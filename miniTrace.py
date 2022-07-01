@@ -6,6 +6,59 @@ from math import*
 # Je ne pais encore mis de grandeur sur les axes
 # J'ai devellope ce miniAppli pendant un cours de math ca fait a peu pres 2h la duree dont j'ai fait tout cela
 # Meme si c'est un projet Noob j'en suis quand meme fiere de ce que j'ai accompli
+# Je viens d'ajouter quelque code "traduire" pour corriger l'entree utilisateur comme 
+# 2x + 2 => 2*x+2
+
+
+def inserer(text,intrus,balise):
+	i = 0
+	res = ""
+	y = len(text)
+	while (i < y):
+		if (i == balise):
+			res += (intrus)
+			res += (text[i])
+		else :
+			res += (text[i])
+		i += 1
+	res =  str(res)							
+	return res
+
+def isNaN(s):
+	try :
+		int(s)
+	except :
+		verite = 1
+	else :
+		verite = 0
+
+	return verite			
+
+def traduire(g):
+	i = 0
+	x = len(g)
+	while (g[i] != ''):
+		if (g[i] == 'x'):
+			if (g[i - 1] == g[len(g) - 1]):
+				pass
+			elif(g[i - 1] =='/') :
+				pass
+			elif(g[i - 1] =='*') :
+				pass	
+			elif(g[i - 1] =='+') :
+				pass	
+			elif(g[i - 1] =='-') :
+				pass	
+			elif(g[i - 1] =='(') :
+				pass	
+			else :
+				g = inserer(g,'*',i)
+		i += 1	
+		if (i >= len(g)):
+				break	
+	return g
+
+
 
 canWi = 500
 canHei = 500
@@ -25,7 +78,7 @@ def Tracer() :
 	if (x >= limi):
 		pass
 	else :
-		y = eval(aa.get())
+		y = eval(traduire(aa.get()))
 		axeX.append(x*echelle)
 		axeY.append(y*echelle)
 		if (len(axeX) == 2):
@@ -95,7 +148,7 @@ cc.grid(row = 4,column = 1)
 # e.grid(row = 8,column = 0)
 # ee.grid(row = 8,column = 1)
 
-manuel = Label(text = "Entrez un equation comme : 2x + 2 ")
+manuel = Label(text = "Entrez un equation comme : 2*x + 2 ")
 manuel.grid(row = 4,column = 1,rowspan = 5)
 
 buttonTrace = Button(text = "Tracer",command = letTrace)
@@ -115,6 +168,7 @@ canvas.create_line(0,canHei/2,canWi,canHei/2)
 canvas.grid(row = 0,rowspan = 20,column = 4)
 
 ctx.mainloop()
+
 
 
 
